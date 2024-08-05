@@ -7,61 +7,70 @@ option go_package = "./genproto/medals";
 import "google/protobuf/timestamp.proto";
 
 service MedalService {
-    rpc CreateMedal(CreateMedalRequest) returns (CreateMedalResponse);
+    rpc CreateMedal(CreateMedalRequest) returns (Medal);
     rpc GetMedal(GetMedalRequest) returns (GetMedalResponse);
     rpc GetMedals(GetMedalsRequest) returns (GetMedalsResponse);
     rpc UpdateMedal(UpdateMedalRequest) returns (UpdateMedalResponse);
     rpc DeleteMedal(DeleteMedalRequest) returns (DeleteMedalResponse);
+    rpc GetMedalsByCountry(GetMedalsByCountryRequest) returns (GetMedalsByCountryResponse);
+    rpc GetMedalsByAthlete(GetMedalsByAthleteRequest) returns (GetMedalsResponse);
+    rpc GetMedalsByTimeRange(GetMedalsByTimeRangeRequest) returns (GetMedalsByTimeRangeResponse);
 }
 
-
-message CreateMedalRequest {
+message Medal {
     string id = 1;
-    string title = 2;
+    string type = 2;
     string description = 3;
-    string recipient_country = 4;
-}
-
-message CreateMedalResponse {
-    string id = 1;
-    string title = 2;
-    string description = 3;
-    string recipient_country = 4;
+    string athlete_id = 4;
     google.protobuf.Timestamp created_at = 5;
     google.protobuf.Timestamp updated_at = 6;
 }
 
+message CreateMedalRequest {    
+    string type = 1;
+    string description = 2;
+    string athlete_id = 3;
+}
 
 message GetMedalsRequest{
     int32 page = 1;
     int32 limit = 2;
-    string recipient_country = 3;
+    string sort_order = 4; 
+    string type_filter = 5; 
 }
 
 message GetMedalsResponse {
-    repeated CreateMedalResponse medals = 1;
-    int32 total_count = 2;
+    repeated Medal medals = 1;
 }
 
 message GetMedalRequest {
     string id = 1;
-    string recipient_country = 2;
 }
 
 message GetMedalResponse {
-    CreateMedalResponse medal = 1;
-    google.protobuf.Timestamp updated_at = 4;
+    Medal medal = 1;
+}
+
+message GetMedalsByCountryRequest{
+    int32 page = 1;
+    int32 limit = 2;
+    string country = 3;
+}
+
+message GetMedalsByCountryResponse{
+    repeated Medal medals = 1;
 }
 
 message UpdateMedalRequest {
     string id = 1;
     string title = 2;
-    string description = 3;
-    string recipient_country = 4;
+    string type = 3;
+    string description = 4;
+    string athlete_id = 5;
 }
 
 message UpdateMedalResponse {
-    CreateMedalResponse medal = 1;
+    Medal medal = 1;
 }
 
 message DeleteMedalRequest {
@@ -70,4 +79,19 @@ message DeleteMedalRequest {
 
 message DeleteMedalResponse {
     bool success = 1;
+}
+
+message GetMedalsByAthleteRequest{
+    string athlete_id = 1;
+}
+
+message GetMedalsByTimeRangeRequest {
+    google.protobuf.Timestamp start_time = 1;
+    google.protobuf.Timestamp end_time = 2;
+    int32 page = 3;
+    int32 limit = 4;
+}
+
+message GetMedalsByTimeRangeResponse {
+    repeated Medal medals = 1;
 }
