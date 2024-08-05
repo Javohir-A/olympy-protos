@@ -12,9 +12,10 @@ service MedalService {
     rpc GetMedals(GetMedalsRequest) returns (GetMedalsResponse);
     rpc UpdateMedal(UpdateMedalRequest) returns (UpdateMedalResponse);
     rpc DeleteMedal(DeleteMedalRequest) returns (DeleteMedalResponse);
-    rpc GetMedalsByCountry(GetMedalsByCountryRequest) returns (GetMedalsByCountryResponse);
+    
+    rpc GetMedalsByCountry(GetMedalsByCountryRequest) returns (GetMedalsResponse);
     rpc GetMedalsByAthlete(GetMedalsByAthleteRequest) returns (GetMedalsResponse);
-    rpc GetMedalsByTimeRange(GetMedalsByTimeRangeRequest) returns (GetMedalsByTimeRangeResponse);
+    rpc GetMedalsByTimeRange(GetMedalsByTimeRangeRequest) returns (GetMedalsResponse);
 }
 
 message Medal {
@@ -92,6 +93,3 @@ message GetMedalsByTimeRangeRequest {
     int32 limit = 4;
 }
 
-message GetMedalsByTimeRangeResponse {
-    repeated Medal medals = 1;
-}

@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package athlete;
+
+option go_package = "./genproto/athlete";
+
+import "google/protobuf/timestamp.proto";
+
+service AthleteService {
+    rpc CreateAthlete(CreateAthleteRequest) returns (Athlete);
+    rpc GetAthlete(GetAthleteRequest) returns (Athlete);
+    rpc UpdateAthlete(UpdateAthleteRequest) returns (Athlete);
+    rpc DeleteAthlete(DeleteAthleteRequest) returns (Athlete);
+
+    rpc GetAthleteBySport(GetAthleteBySportRequest) returns (GetAthleteResponse);
+    rpc 
+}
+
+
+message Athlete{
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string gender = 4;
+    string nationality = 6;
+    string height = 7;
+    string weight = 8;
+    string sport = 9;
+    google.protobuf.Timestamp date_of_birth =  10;
+    google.protobuf.Timestamp created_at =  11;
+}
+
+message GetAthleteBySportRequest{
+    int32 page = 1;
+    int32 limit = 2;
+    string sport = 3;
+}
+
+message GetAthleteResponse {
+    repeated Athlete athletes = 1;
+}
+
+message CreateAthleteRequest {
+    string first_name = 1;
+    string last_name = 2;
+    string gender = 3;
+    string nationality = 4;
+    string height = 5;
+    string weight = 6;
+    string sport = 7;
+    google.protobuf.Timestamp date_of_birth =  8;
+}
+
+message GetAthleteRequest {
+    string id = 1;
+}
+
+message UpdateAthleteRequest {
+    string id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string gender = 4;
+    string nationality = 5;
+    string height = 6;
+    string weight = 7;
+    string sport = 8;
+    google.protobuf.Timestamp date_of_birth =  9;
+}
+
+message DeleteAthleteRequest {
+    string id = 1;
+}
