@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package medal;
+
+option go_package = "./genproto/medals";
+
+import "google/protobuf/timestamp.proto";
+
+service MedalService {
+    rpc CreateMedal(CreateMedalRequest) returns (CreateMedalResponse);
+    rpc GetMedal(GetMedalRequest) returns (GetMedalResponse);
+    rpc GetMedals(GetMedalsRequest) returns (GetMedalsResponse);
+    rpc UpdateMedal(UpdateMedalRequest) returns (UpdateMedalResponse);
+    rpc DeleteMedal(DeleteMedalRequest) returns (DeleteMedalResponse);
+}
+
+
+message CreateMedalRequest {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    string recipient_country = 4;
+}
+
+message CreateMedalResponse {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    string recipient_country = 4;
+    google.protobuf.Timestamp created_at = 5;
+    google.protobuf.Timestamp updated_at = 6;
+}
+
+
+message GetMedalsRequest{
+    int32 page = 1;
+    int32 limit = 2;
+    string recipient_country = 3;
+}
+
+message GetMedalsResponse {
+    repeated CreateMedalResponse medals = 1;
+    int32 total_count = 2;
+}
+
+message GetMedalRequest {
+    string id = 1;
+    string recipient_country = 2;
+}
+
+message GetMedalResponse {
+    CreateMedalResponse medal = 1;
+    google.protobuf.Timestamp updated_at = 4;
+}
+
+message UpdateMedalRequest {
+    string id = 1;
+    string title = 2;
+    string description = 3;
+    string recipient_country = 4;
+}
+
+message UpdateMedalResponse {
+    CreateMedalResponse medal = 1;
+}
+
+message DeleteMedalRequest {
+    string id = 1;
+}
+
+message DeleteMedalResponse {
+    bool success = 1;
+}
