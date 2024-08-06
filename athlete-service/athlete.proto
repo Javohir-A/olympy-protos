@@ -13,7 +13,6 @@ service AthleteService {
     rpc DeleteAthlete(DeleteAthleteRequest) returns (Athlete);
 
     rpc GetAthleteBySport(GetAthleteBySportRequest) returns (GetAthleteResponse);
-    rpc 
 }
 
 
