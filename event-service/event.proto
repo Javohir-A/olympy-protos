@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package event;
+
+option go_package = "./genproto/event";
+
+import "google/protobuf/timestamp.proto";
+
+service EventService {
+    rpc GetEvent(GetEventRequest) returns (Event);
+    rpc CreateEvent(CreateEventRequest) returns (Event);
+    rpc UpdateEvent(UpdateEventRequest) returns (Event);
+    rpc DeleteEvent(DeleteEventRequest) returns (DeleteEventResponse);
+
+    rpc GetEventBySport(GetEventBySportRequest) returns (GetEventBySportResponse);
+}
+
+message GetEventBySportRequest {
+    int32 page = 1;
+    int32 limit = 2;
+    string sport = 3;
+}
+
+message GetEventBySportResponse {
+    repeated Event events = 1;
+}
+
+message GetEventRequest {
+    string id = 1;
+}
+
+message CreateEventRequest {
+    string name = 1;
+    string sport_type = 2;
+    google.protobuf.Timestamp start_time = 3; // Using string for simplicity, consider using Timestamp
+    google.protobuf.Timestamp end_time = 4;   // Using string for simplicity, consider using Timestamp
+    string location = 5;
+    string description = 6;
+    google.protobuf.Timestamp created_at = 7;
+}
+
+message UpdateEventRequest {
+    string id = 1;
+    string name = 2;
+    string sport_type = 3;
+    google.protobuf.Timestamp start_time = 4; // Using string for simplicity, consider using Timestamp
+    google.protobuf.Timestamp end_time = 5;   // Using string for simplicity, consider using Timestamp
+    string location = 6;
+    string description = 7;
+    google.protobuf.Timestamp updated_at = 8;
+
+}
+
+message DeleteEventRequest {
+    string id = 1;
+}
+
+message DeleteEventResponse {
+    string message = 1;
+}
+
+message Event {
+    string id = 1;
+    string name = 2;
+    string sport_type = 3;
+    google.protobuf.Timestamp start_time = 4; // Using string for simplicity, consider using Timestamp
+    google.protobuf.Timestamp end_time = 5;   // Using string for simplicity, consider using Timestamp
+    string location = 6;
+    string description = 7;
+    google.protobuf.Timestamp created_at = 8;
+}
