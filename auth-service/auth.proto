@@ -10,6 +10,16 @@ service AuthService {
     // rpc Verify(VerifyRequest) returns (VerifyResponse);
     // rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
     rpc Logout(LogoutRequest) returns (LogoutResponse);
+    rpc CreateAdmin(CreateAdminRequest) returns (CreateAdminResponse);
+}
+
+// Create Admin Request and Response
+message CreateAdminRequest{
+    string user_id = 1;
+}
+
+message CreateAdminResponse{
+    string message = 1;
 }
 
 // Register Request and Response
