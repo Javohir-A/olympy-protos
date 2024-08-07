@@ -23,6 +23,7 @@ message Medal {
     string type = 2;
     string description = 3;
     string athlete_id = 4;
+    string country = 7;
     google.protobuf.Timestamp created_at = 5;
     google.protobuf.Timestamp updated_at = 6;
 }
@@ -31,6 +32,7 @@ message CreateMedalRequest {
     string type = 1;
     string description = 2;
     string athlete_id = 3;
+    string country = 6;
 }
 
 message GetMedalsRequest{
@@ -68,6 +70,7 @@ message UpdateMedalRequest {
     string type = 3;
     string description = 4;
     string athlete_id = 5;
+    string country = 6;
 }
 
 message UpdateMedalResponse {
@@ -92,4 +95,3 @@ message GetMedalsByTimeRangeRequest {
     int32 page = 3;
     int32 limit = 4;
 }
-
