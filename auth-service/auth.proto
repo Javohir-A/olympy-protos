@@ -7,18 +7,18 @@ option go_package = "./genproto/auth";
 service AuthService {
     rpc Register(RegisterRequest) returns (RegisterResponse);
     rpc Login(LoginRequest) returns (LoginResponse);
-    // rpc Verify(VerifyRequest) returns (VerifyResponse);
-    // rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
     rpc Logout(LogoutRequest) returns (LogoutResponse);
     rpc CreateAdmin(CreateAdminRequest) returns (CreateAdminResponse);
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
 }
 
 // Create Admin Request and Response
-message CreateAdminRequest{
+message CreateAdminRequest {
     string user_id = 1;
 }
 
-message CreateAdminResponse{
+message CreateAdminResponse {
     string message = 1;
 }
 
@@ -43,21 +43,33 @@ message LoginResponse {
     string refresh_token = 2;
 }
 
-// Refresh Token Request and Response
-// message RefreshTokenRequest {
-//     string refresh_token = 1;
-// }
-
-// message RefreshTokenResponse {
-//     string access_token = 1;
-//     string refresh_token = 2;
-// }
-
 // Logout Request and Response
 message LogoutRequest {
     string user_id = 1;
 }
 
 message LogoutResponse {
+    string message = 1;
+}
+
+// Update User Request and Response
+message UpdateUserRequest {
+    string user_id = 1;
+    string email = 2;
+    string password = 3;
+    string role = 4;
+    bool is_active = 5;
+}
+
+message UpdateUserResponse {
+    string message = 1;
+}
+
+// Delete User Request and Response
+message DeleteUserRequest {
+    string user_id = 1;
+}
+
+message DeleteUserResponse {
     string message = 1;
 }
