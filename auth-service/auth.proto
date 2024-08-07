@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package athlete;
+
+option go_package = "./genproto/auth";
+
+service AuthService {
+    rpc Register(RegisterRequest) returns (RegisterResponse);
+    rpc Login(LoginRequest) returns (LoginResponse);
+    // rpc Verify(VerifyRequest) returns (VerifyResponse);
+    // rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
+    rpc Logout(LogoutRequest) returns (LogoutResponse);
+}
+
+// Register Request and Response
+message RegisterRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message RegisterResponse {
+    string user_id = 1;
+}
+
+// Login Request and Response
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string access_token = 1;
+    string refresh_token = 2;
+}
+
+// Refresh Token Request and Response
+// message RefreshTokenRequest {
+//     string refresh_token = 1;
+// }
+
+// message RefreshTokenResponse {
+//     string access_token = 1;
+//     string refresh_token = 2;
+// }
+
+// Logout Request and Response
+message LogoutRequest {
+    string user_id = 1;
+}
+
+message LogoutResponse {
+    string message = 1;
+}
