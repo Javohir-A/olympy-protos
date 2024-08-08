@@ -16,7 +16,22 @@ service MedalService {
     rpc GetMedalsByCountry(GetMedalsByCountryRequest) returns (GetMedalsResponse);
     rpc GetMedalsByAthlete(GetMedalsByAthleteRequest) returns (GetMedalsResponse);
     rpc GetMedalsByTimeRange(GetMedalsByTimeRangeRequest) returns (GetMedalsResponse);
+
+    rpc RankingByCountry(GetRankingByCountryRequest) returns (GetRankingResponse);
 }
+
+message GetRankingByCountryRequest {
+    string limit = 1;
+}
+
+message GetRankingResponse {
+    string name = 4; 
+    int32 gold_count = 1;
+    int32 silver_count = 2;
+    int32 bronze_count = 3;
+    int32 total_count = 5;
+}
+
 
 message Medal {
     string id = 1;
