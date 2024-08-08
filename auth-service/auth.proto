@@ -11,6 +11,12 @@ service AuthService {
     rpc CreateAdmin(CreateAdminRequest) returns (CreateAdminResponse);
     rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
     rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse);
+    rpc GetUserByEmail(GetUserByEmailRequest) returns (RegisterResponse);
+}
+
+// Get User By Email Request and Response
+message GetUserByEmailRequest {
+    string email = 1;
 }
 
 // Create Admin Request and Response
